@@ -4,24 +4,24 @@
 #
 
 library(RSQLite)
-library(ggplot2)
-library(RSQLite.extfuns)
+#library(ggplot2)
+#library(RSQLite.extfuns)
 db = dbConnect(
   dbDriver("SQLite")
-  , dbname = 'watershed_database.db'
+  , dbname = '/opt/dcoleman/ros/misc/src/pr2_benchmarking/results/benchmark.db'
   , loadable.extensions = TRUE)
 
 #dbGetQuery just returns a data frame
-pods = dbGetQuery(db, "
-SELECT category, subbasin_name, quantity, geox, geoy
-FROM pods
-WHERE lic_status = 'CURRENT'
-  AND quantity IS NOT NULL")
+pods = dbGetQuery(db, "SELECT id, name, totaltime, timelimit
+                       FROM experiments")
 
-summary(pods$quantity)
+#WHERE lic_status = 'CURRENT'
+  #AND quantity IS NOT NULL")
 
-ggplot(data=pods) +
-  geom_point(aes(x=geox
-                 , y=geoy
-                 , color=category
-                 , size=quantity))
+summary(pods)
+
+#ggplot(data=pods) +
+#  geom_point(aes(x=geox
+#                 , y=geoy
+#                 , color=category
+#                 , size=quantity))
