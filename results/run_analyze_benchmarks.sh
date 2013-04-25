@@ -1,1 +1,1 @@
-rosrun moveit_ros_benchmarks moveit_benchmark_statistics.py RightArmAll.1.log -m benchmark.sql
+rosrun moveit_ros_benchmarks moveit_benchmark_statistics.py RightArmAll.*.log -o -c benchmark.csv #&& cat benchmark.csv

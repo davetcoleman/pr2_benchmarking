@@ -1,6 +1,7 @@
 Experiment industrial
 Running on ros_monster
-Starting at 2013-04-24T21:46:50.351156
+Starting at 2013-04-25T23:19:51.481781
+Goal name industrial.oven_01
 <<<|
 ROS
 workspace_parameters: 
@@ -247,50 +248,10 @@ allowed_planning_time: 0
 
 |>>>
 0 seconds per run
-8.05721 seconds spent to collect the data
-8 planners
-OMPL_right_arm[SBLkConfigDefault]
-0 common properties
-2 properties for each run
-solved BOOLEAN
-total_time REAL
-1 runs
-0; 1.0050435879999999; 
-.
-OMPL_right_arm[LBKPIECEkConfigDefault]
-0 common properties
-18 properties for each run
-path_interpolate_clearance REAL
-path_interpolate_correct BOOLEAN
-path_interpolate_length REAL
-path_interpolate_smoothness REAL
-path_interpolate_time REAL
-path_plan_clearance REAL
-path_plan_correct BOOLEAN
-path_plan_length REAL
-path_plan_smoothness REAL
-path_plan_time REAL
-path_simplify_clearance REAL
-path_simplify_correct BOOLEAN
-path_simplify_length REAL
-path_simplify_smoothness REAL
-path_simplify_time REAL
-process_time REAL
-solved BOOLEAN
-total_time REAL
-1 runs
-0.04529971182308791; 1; 12.981585013773421; 0.086677029141500175; 0.00013248900000000001; 0.078845777455717331; 1; 45.882817301213613; 9.7652774602354846; 0.53979500000000002; 0.040410768437883535; 1; 12.981585013773419; 0.10967297564842918; 0.248166; 0.055529921000000051; 1; 0.84362341000000007; 
-.
+10.2334 seconds spent to collect the data
+1 planners
 OMPL_right_arm[RRTkConfigDefault]
 0 common properties
-2 properties for each run
-solved BOOLEAN
-total_time REAL
-1 runs
-0; 1.0050301800000001; 
-.
-OMPL_right_arm[RRTConnectkConfigDefault]
-0 common properties
 18 properties for each run
 path_interpolate_clearance REAL
 path_interpolate_correct BOOLEAN
@@ -310,54 +271,15 @@ path_simplify_time REAL
 process_time REAL
 solved BOOLEAN
 total_time REAL
-1 runs
-0.062967885548260244; 1; 18.420505101524036; 0.16246025135843989; 0.000234109; 0.08108394593000412; 1; 37.24251750076953; 4.9851962208250802; 0.89429999999999998; 0.059794174824756657; 1; 18.420505101524046; 1.1591574492935601; 0.14310600000000001; 0.03726424800000009; 1; 1.0749043570000001; 
-.
-OMPL_right_arm[ESTkConfigDefault]
-0 common properties
-2 properties for each run
-solved BOOLEAN
-total_time REAL
-1 runs
-0; 1.006042528; 
-.
-OMPL_right_arm[KPIECEkConfigDefault]
-0 common properties
-2 properties for each run
-solved BOOLEAN
-total_time REAL
-1 runs
-0; 1.00415031; 
-.
-OMPL_right_arm[BKPIECEkConfigDefault]
-0 common properties
-2 properties for each run
-solved BOOLEAN
-total_time REAL
-1 runs
-0; 1.004334775; 
-.
-OMPL_right_arm[RRTStarkConfigDefault]
-0 common properties
-18 properties for each run
-path_interpolate_clearance REAL
-path_interpolate_correct BOOLEAN
-path_interpolate_length REAL
-path_interpolate_smoothness REAL
-path_interpolate_time REAL
-path_plan_clearance REAL
-path_plan_correct BOOLEAN
-path_plan_length REAL
-path_plan_smoothness REAL
-path_plan_time REAL
-path_simplify_clearance REAL
-path_simplify_correct BOOLEAN
-path_simplify_length REAL
-path_simplify_smoothness REAL
-path_simplify_time REAL
-process_time REAL
-solved BOOLEAN
-total_time REAL
-1 runs
-0.034032748381007248; 0; 14.952973108249648; 0.1685566363515637; 0.00010036200000000001; 0.11643320173025132; 1; 17.453411905291848; 3.9401080006840026; 0.18110399999999999; 0.02910254879715489; 1; 14.952973108249646; 0.26490401644087441; 0.153368; 0.040407658000000034; 1; 0.37498002000000002; 
+10 runs
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0103921730000001; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0033228009999999; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0103285470000001; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0096310289999999; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0100636810000001; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0028733460000001; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.007801758; 
+; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; 0; 1.0122295569999999; 
+0.061147286532693267; 1; 15.02191749504979; 0.45756789013773114; 0.00023657300000000001; 0.095167967781890184; 1; 27.123597400930269; 8.7950855464099309; 0.582847; 0.058271145551568933; 1; 15.0219174950498; 3.3605691346369508; 0.079497999999999999; 0.032339858000000034; 1; 0.69492143100000003; 
+0.093528722481029794; 1; 18.397352507555457; 0.20498903889084275; 0.00024112500000000002; 0.090677304100245243; 1; 37.611287767537164; 8.2120345127736734; 0.96492999999999995; 0.10777516011148691; 1; 18.397352507555453; 4.2358809032088978; 0.068884000000000001; 0.035415622000000042; 1; 1.069470747; 
 .
