@@ -1,0 +1,363 @@
+Experiment industrial
+Running on ros_monster
+Starting at 2013-04-24T22:28:29.912383
+<<<|
+ROS
+workspace_parameters: 
+  header: 
+    seq: 0
+    stamp: 0.000000000
+    frame_id: 
+  min_corner: 
+    x: 0
+    y: 0
+    z: 0
+  max_corner: 
+    x: 0
+    y: 0
+    z: 0
+start_state: 
+  joint_state: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: odom_combined
+    name[]
+      name[0]: fl_caster_rotation_joint
+      name[1]: fl_caster_l_wheel_joint
+      name[2]: fl_caster_r_wheel_joint
+      name[3]: fr_caster_rotation_joint
+      name[4]: fr_caster_l_wheel_joint
+      name[5]: fr_caster_r_wheel_joint
+      name[6]: bl_caster_rotation_joint
+      name[7]: bl_caster_l_wheel_joint
+      name[8]: bl_caster_r_wheel_joint
+      name[9]: br_caster_rotation_joint
+      name[10]: br_caster_l_wheel_joint
+      name[11]: br_caster_r_wheel_joint
+      name[12]: torso_lift_joint
+      name[13]: head_pan_joint
+      name[14]: head_tilt_joint
+      name[15]: laser_tilt_mount_joint
+      name[16]: r_shoulder_pan_joint
+      name[17]: r_shoulder_lift_joint
+      name[18]: r_upper_arm_roll_joint
+      name[19]: r_elbow_flex_joint
+      name[20]: r_forearm_roll_joint
+      name[21]: r_wrist_flex_joint
+      name[22]: r_wrist_roll_joint
+      name[23]: r_gripper_motor_slider_joint
+      name[24]: r_gripper_motor_screw_joint
+      name[25]: r_gripper_l_finger_joint
+      name[26]: r_gripper_l_finger_tip_joint
+      name[27]: r_gripper_r_finger_joint
+      name[28]: r_gripper_r_finger_tip_joint
+      name[29]: r_gripper_joint
+      name[30]: l_shoulder_pan_joint
+      name[31]: l_shoulder_lift_joint
+      name[32]: l_upper_arm_roll_joint
+      name[33]: l_elbow_flex_joint
+      name[34]: l_forearm_roll_joint
+      name[35]: l_wrist_flex_joint
+      name[36]: l_wrist_roll_joint
+      name[37]: l_gripper_motor_slider_joint
+      name[38]: l_gripper_motor_screw_joint
+      name[39]: l_gripper_l_finger_joint
+      name[40]: l_gripper_l_finger_tip_joint
+      name[41]: l_gripper_r_finger_joint
+      name[42]: l_gripper_r_finger_tip_joint
+      name[43]: l_gripper_joint
+      name[44]: torso_lift_motor_screw_joint
+    position[]
+      position[0]: 0
+      position[1]: 0
+      position[2]: 0
+      position[3]: 0
+      position[4]: 0
+      position[5]: 0
+      position[6]: 0
+      position[7]: 0
+      position[8]: 0
+      position[9]: 0
+      position[10]: 0
+      position[11]: 0
+      position[12]: 0.2
+      position[13]: 0
+      position[14]: 0
+      position[15]: 0
+      position[16]: -1.75
+      position[17]: 0.0179976
+      position[18]: -0.00523819
+      position[19]: -1.4
+      position[20]: -0.000417087
+      position[21]: -1.1
+      position[22]: -0.00100021
+      position[23]: 0
+      position[24]: 0
+      position[25]: 0
+      position[26]: 0
+      position[27]: 0
+      position[28]: 0
+      position[29]: 0
+      position[30]: 1.5
+      position[31]: 1
+      position[32]: 0.00568301
+      position[33]: -1.4
+      position[34]: 0.000799433
+      position[35]: -0.743912
+      position[36]: 0.000498893
+      position[37]: 0
+      position[38]: 0
+      position[39]: 0
+      position[40]: 0
+      position[41]: 0
+      position[42]: 0
+      position[43]: 0
+      position[44]: 0
+    velocity[]
+      velocity[0]: 0
+      velocity[1]: 0
+      velocity[2]: 0
+      velocity[3]: 0
+      velocity[4]: 0
+      velocity[5]: 0
+      velocity[6]: 0
+      velocity[7]: 0
+      velocity[8]: 0
+      velocity[9]: 0
+      velocity[10]: 0
+      velocity[11]: 0
+      velocity[12]: 0
+      velocity[13]: 0
+      velocity[14]: 0
+      velocity[15]: 0
+      velocity[16]: 0
+      velocity[17]: 0
+      velocity[18]: 0
+      velocity[19]: 0
+      velocity[20]: 0
+      velocity[21]: 0
+      velocity[22]: 0
+      velocity[23]: 0
+      velocity[24]: 0
+      velocity[25]: 0
+      velocity[26]: 0
+      velocity[27]: 0
+      velocity[28]: 0
+      velocity[29]: 0
+      velocity[30]: 0
+      velocity[31]: 0
+      velocity[32]: 0
+      velocity[33]: 0
+      velocity[34]: 0
+      velocity[35]: 0
+      velocity[36]: 0
+      velocity[37]: 0
+      velocity[38]: 0
+      velocity[39]: 0
+      velocity[40]: 0
+      velocity[41]: 0
+      velocity[42]: 0
+      velocity[43]: 0
+      velocity[44]: 0
+    effort[]
+  multi_dof_joint_state: 
+    header: 
+      seq: 0
+      stamp: 0.000000000
+      frame_id: odom_combined
+    joint_names[]
+      joint_names[0]: world_joint
+    joint_transforms[]
+      joint_transforms[0]: 
+            translation: 
+          x: 0
+          y: 0
+          z: 0
+        rotation: 
+          x: 0
+          y: 0
+          z: 0
+          w: 1
+  attached_collision_objects[]
+goal_constraints[]
+  goal_constraints[0]: 
+    name: industrial.oven_01
+    joint_constraints[]
+    position_constraints[]
+      position_constraints[0]: 
+            header: 
+          seq: 0
+          stamp: 0.000000000
+          frame_id: odom_combined
+        link_name: r_wrist_roll_link
+        target_point_offset: 
+          x: 0
+          y: 0
+          z: 0
+        constraint_region: 
+          primitives[]
+            primitives[0]: 
+                        type: 2
+              dimensions[]
+                dimensions[0]: 0.001
+          primitive_poses[]
+            primitive_poses[0]: 
+                        position: 
+                x: 0.75
+                y: -0.05
+                z: 0.98
+              orientation: 
+                x: 0
+                y: 0
+                z: 0
+                w: 1
+          meshes[]
+          mesh_poses[]
+        weight: 1
+    orientation_constraints[]
+      orientation_constraints[0]: 
+            header: 
+          seq: 0
+          stamp: 0.000000000
+          frame_id: odom_combined
+        orientation: 
+          x: 0
+          y: 0.706825
+          z: 0
+          w: 0.707388
+        link_name: r_wrist_roll_link
+        absolute_x_axis_tolerance: 0.01
+        absolute_y_axis_tolerance: 0.01
+        absolute_z_axis_tolerance: 0.01
+        weight: 1
+    visibility_constraints[]
+path_constraints: 
+  name: 
+  joint_constraints[]
+  position_constraints[]
+  orientation_constraints[]
+  visibility_constraints[]
+trajectory_constraints: 
+  constraints[]
+planner_id: 
+group_name: right_arm
+num_planning_attempts: 0
+allowed_planning_time: 0
+
+|>>>
+0 seconds per run
+7.86076 seconds spent to collect the data
+8 planners
+OMPL_right_arm[SBLkConfigDefault]
+0 common properties
+2 properties for each run
+solved BOOLEAN
+total_time REAL
+1 runs
+0; 1.008004857; 
+.
+OMPL_right_arm[LBKPIECEkConfigDefault]
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+total_time REAL
+1 runs
+0.052805699421233442; 1; 12.881012031958379; 0.17162891314616546; 8.2971000000000002e-05; 0.087587105968565337; 1; 60.249454882248386; 12.705115939936086; 0.33837200000000001; 0.055812501814216375; 1; 12.881012031958377; 0.19390206705393184; 0.30302699999999999; 0.055480470000000046; 1; 0.69696244100000004; 
+.
+OMPL_right_arm[RRTkConfigDefault]
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+total_time REAL
+1 runs
+0.061073805911394337; 1; 15.481489346274946; 0.044631860660634091; 9.1282000000000011e-05; 0.10928690657019616; 1; 34.470619878329849; 7.2207343144232565; 0.62493699999999996; 0.057296055945664434; 1; 15.481489346274945; 0.059838196251384361; 0.28243200000000002; 0.046553424000000038; 1; 0.95401370600000002; 
+.
+OMPL_right_arm[RRTConnectkConfigDefault]
+0 common properties
+18 properties for each run
+path_interpolate_clearance REAL
+path_interpolate_correct BOOLEAN
+path_interpolate_length REAL
+path_interpolate_smoothness REAL
+path_interpolate_time REAL
+path_plan_clearance REAL
+path_plan_correct BOOLEAN
+path_plan_length REAL
+path_plan_smoothness REAL
+path_plan_time REAL
+path_simplify_clearance REAL
+path_simplify_correct BOOLEAN
+path_simplify_length REAL
+path_simplify_smoothness REAL
+path_simplify_time REAL
+process_time REAL
+solved BOOLEAN
+total_time REAL
+1 runs
+0.062368495727125078; 1; 16.396261274910913; 0.16303808462393896; 0.000165315; 0.067441525736025396; 1; 23.676027120546753; 8.4098489854522605; 0.19614999999999999; 0.063553485525489756; 1; 16.39626127491092; 0.35098938618065367; 0.119007; 0.043555797000000035; 1; 0.35887811200000003; 
+.
+OMPL_right_arm[ESTkConfigDefault]
+0 common properties
+2 properties for each run
+solved BOOLEAN
+total_time REAL
+1 runs
+0; 1.006025696; 
+.
+OMPL_right_arm[KPIECEkConfigDefault]
+0 common properties
+2 properties for each run
+solved BOOLEAN
+total_time REAL
+1 runs
+0; 1.0041186099999999; 
+.
+OMPL_right_arm[BKPIECEkConfigDefault]
+0 common properties
+2 properties for each run
+solved BOOLEAN
+total_time REAL
+1 runs
+0; 1.004032075; 
+.
+OMPL_right_arm[RRTStarkConfigDefault]
+0 common properties
+2 properties for each run
+solved BOOLEAN
+total_time REAL
+1 runs
+0; 1.004399093; 
+.

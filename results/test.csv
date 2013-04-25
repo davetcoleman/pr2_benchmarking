@@ -1,0 +1,9 @@
+planner_type, total_time, solved, process_time, path_simplify_time, path_simplify_smoothness, path_simplify_length, path_simplify_correct, path_simplify_clearance, path_plan_time, path_plan_smoothness, path_plan_length, path_plan_correct, path_plan_clearance, path_interpolate_time, path_interpolate_smoothness, path_interpolate_length, path_interpolate_correct, path_interpolate_clearance
+right_arm_SBL, 1.005043588, 0, , , , , , , , , , , , , , , , 
+right_arm_LBKPIECE, 0.84362341, 1, 0.055529921, 0.248166, 0.109672975648, 12.9815850138, 1, 0.0404107684379, 0.539795, 9.76527746024, 45.8828173012, 1, 0.0788457774557, 0.000132489, 0.0866770291415, 12.9815850138, 1, 0.0452997118231
+right_arm_RRT, 1.00503018, 0, , , , , , , , , , , , , , , , 
+right_arm_RRTConnec, 1.074904357, 1, 0.037264248, 0.143106, 1.15915744929, 18.4205051015, 1, 0.0597941748248, 0.8943, 4.98519622083, 37.2425175008, 1, 0.08108394593, 0.000234109, 0.162460251358, 18.4205051015, 1, 0.0629678855483
+right_arm_EST, 1.006042528, 0, , , , , , , , , , , , , , , , 
+right_arm_KPIECE, 1.00415031, 0, , , , , , , , , , , , , , , , 
+right_arm_BKPIECE, 1.004334775, 0, , , , , , , , , , , , , , , , 
+right_arm_RRTStar, 0.37498002, 1, 0.040407658, 0.153368, 0.264904016441, 14.9529731082, 1, 0.0291025487972, 0.181104, 3.94010800068, 17.4534119053, 1, 0.11643320173, 0.000100362, 0.168556636352, 14.9529731082, 0, 0.034032748381
