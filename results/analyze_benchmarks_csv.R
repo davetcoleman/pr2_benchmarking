@@ -7,4 +7,7 @@ data$planner_type= factor(data$planner_type)
 
 summary(data)
 
-plot(data$planner_type ~ data$total_time)
+plot(data$param_goal_bias, data$process_time)
+
+model = lm(data$param_goal_bias, data$process_time, data)
+summary(model)
