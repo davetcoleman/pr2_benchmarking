@@ -8,13 +8,13 @@ if(TRUE)
   data <- read.csv("/home/dave/ros/misc/src/pr2_benchmarking/results/benchmark.csv",header=T) 
   
   # Remove unsolved?  -------------------------------------------------------------------------------------
-  data = data[data$solved==1,]
-  #good_data = data
-  good_data = data[ grep("top_bin_right", data$goal_name),]
+  #data = data[data$solved==1,]
+  good_data = data
+  #good_data = data[ grep("top_bin_right", data$goal_name),]
   
   # Stats on benchmark -------------------------------------------------------------------------------------
-  failed_attempts=nrow(data[data$solved==0,])
-  total_attempts = nrow(data)
+  failed_attempts=nrow(good_data[good_data$solved==0,])
+  total_attempts = nrow(good_data)
   percent_failed = failed_attempts/total_attempts*100
   
   # Plot planning time of solved problems  -------------------------------------------------------------------------------------
@@ -25,14 +25,16 @@ if(TRUE)
   # Filter the data ---------------------------------------------------------------------------
   path_plan_lengths = suppressWarnings(as.numeric(levels(good_data$path_plan_length))[good_data$path_plan_length])
   path_plan_times = suppressWarnings(as.numeric(levels(good_data$path_plan_time))[good_data$path_plan_time])
-  fitness_values =  (path_plan_lengths^2)*path_plan_times/100
+  fitness_values =  (path_plan_lengths^2)*path_plan_times  
+  # Change NAs to max value
   fitness_values[is.na(fitness_values)] = max(fitness_values,na.rm = TRUE)
+  #fitness_values[fitness_values > 18860] = 18860
   
-  simple_data=data.frame(temp_change     = factor(good_data$param_temp_change_factor), 
+  simple_data=data.frame(temp_change     = (good_data$param_temp_change_factor), 
                          max_failed      = factor(good_data$param_max_states_failed),
-                         range           = factor(good_data$param_range),
+                         range           = (good_data$param_range),
                          min_temp        = factor(good_data$param_min_temperature),
-                         max_state_fail  = factor(good_data$param_max_states_failed),
+                         max_state_fail  = factor(good_data$param_max_states_fail),
                          k_constant      = factor(good_data$param_k_constant),
                          front_threshold = factor(good_data$param_frontier_threshold),
                          front_ratio     = factor(good_data$param_frontier_node_ratio),
@@ -46,8 +48,11 @@ if(TRUE)
 # Fitness function among various benchmarks  ---------------------------------------------------------------------------
 if(TRUE)
 {
+  par(mfrow = c(2, 2)) 
   plot(simple_data$goal_name,simple_data$fitness,log="y",main="Fitness function distribution between different benchmarks",
        xlab='Benchmarking Problem',ylab='Fitness Function Value')
+  plot(simple_data$fitness, simple_data$max_state_fail,main="Fitness vs Factor")
+  #plot(simple_data$fitness, simple_data$temp_change,main="Fitness vs Temp")
 }
 
 # Analyze kitchen data seperate  ---------------------------------------------------------------------------
@@ -81,11 +86,10 @@ if(FALSE)
 # Fractional-Factor Design of Experiements ---------------------------------------------------------------------------
 if(TRUE)
 {
-  simple_data$temp_change = factor(simple_data$temp_change)
-  simple_data$max_failed = factor(simple_data$max_failed)
-
   # Linear Model
   model = lm(formula = fitness ~ temp_change+max_failed+range+min_temp+max_state_fail+k_constant+front_threshold+front_ratio,data=simple_data)
+  #model = lm(formula = fitness ~ temp_change*range,data=simple_data)
+  #model = lm(formula = fitness ~ max_state_fail,data=simple_data)
   cat("\n----------------------------------------\nSummary of Linear Model\n")
   print(summary(model))
   cat("----------------------------------------\n")
@@ -101,23 +105,54 @@ if(TRUE)
   
   # 95% conf interval for max_failed factor
   cat("\n----------------------------------------\nConfidence Intervals:\n")
-  print(confint(aov(model)))
+  conf_int = confint(aov(model))
+  print(conf_int)
   
   # diagnostic plot
   #plot(aov(model))
 }
 
 
-
-
-
+# 3D Plot Relation -----------------------------------------------------------------------------------------
+if(FALSE)
+{
+  library(lattice)
+  p = wireframe(fitness ~ temp_change * range, data=simple_data,main="2 Parameter Sweeping - Temp vs Range")
+  #p <- wireframe(z ~ x * y, data=data)
+  npanel <- c(4, 2)
+  rotx <- c(-50, -80)
+  rotz <- seq(30, 300, length = npanel[1]+1)
+  update(p[rep(1, prod(npanel))], layout = npanel,
+         panel = function(..., screen) {
+           panel.wireframe(..., screen = list(z = rotz[current.column()],
+                                              x = rotx[current.row()]))
+         })
+}
 
 # Testing 3d plot ---------------------------------------------------------------------------------------
 if(FALSE)
 {
+  x = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10) #simple_data$temp_change
+  y = c(0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000) #simple_data$range
+  
+  mat1 = matrix(seq(1:length(x)*length(y)),length(x),length(y),byrow = TRUE)
+  
+  for(xi in 1:length(x))
+  {
+    for(yi in 1:length(y))
+    {
+      id = (xi-1)*length(x) + yi
+      #cat("id=",id," x=",xi," y=",yi," val=",simple_data$fitness[id],"\n")
+      mat1[yi,xi] = simple_data$fitness[id]
+    }
+  }
+  z = mat1*100
+}
+if(FALSE)
+{
   library(rgl)
-  data(volcano)
-  z <- 2 * volcano # Exaggerate the relief
+  #data(volcano)
+  z <- 10000 * mat1 # Exaggerate the relief
   x <- 10 * (1:nrow(z)) # 10 meter spacing (S to N)
   y <- 10 * (1:ncol(z)) # 10 meter spacing (E to W)
   zlim <- range(y)
@@ -127,8 +162,6 @@ if(FALSE)
   open3d()
   rgl.surface(x, y, z, color=col, alpha=0.75, back="lines")
 }
-
-
 
 
 # Final Data Results  ---------------------------------------------------------------------------------------
