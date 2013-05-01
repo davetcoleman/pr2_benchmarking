@@ -1,16 +1,17 @@
-setwd("/home/dave/ros/misc/src/pr2_benchmarking/results/r_results")
+#setwd("/home/dave/ros/misc/src/pr2_benchmarking/results/r_results")
+setwd("/Users/dave/2013/5753_Comp_Perf_Modeling/Final Project/pr2_benchmarking/results")
 
 # Read in fresh data  -------------------------------------------------------------------------------------
 if(TRUE)
 {
   # Reads in experimental data from MoveIt using csv files
   rm(list=ls(all=TRUE))  # clear all vars
-  data <- read.csv("/home/dave/ros/misc/src/pr2_benchmarking/results/benchmark.csv",header=T) 
+  data <- read.csv("benchmark.csv",header=T) 
   
   # Remove unsolved?  -------------------------------------------------------------------------------------
-  data = data[data$solved==1,]
-  #good_data = data
-  good_data = data[ grep("top_bin_right", data$goal_name),]
+  #data = data[data$solved==1,]
+  good_data = data
+  #good_data = data[ grep(" industrial.top_bin_right_01", data$goal_name),]
   
   # Stats on benchmark -------------------------------------------------------------------------------------
   failed_attempts=nrow(data[data$solved==0,])
@@ -46,8 +47,10 @@ if(TRUE)
 # Fitness function among various benchmarks  ---------------------------------------------------------------------------
 if(TRUE)
 {
+  par(mfrow = c(2, 1)) 
   plot(simple_data$goal_name,simple_data$fitness,log="y",main="Fitness function distribution between different benchmarks",
        xlab='Benchmarking Problem',ylab='Fitness Function Value')
+  plot(simple_data$fitness, simple_data$range,main="Fitness vs Factor")
 }
 
 # Analyze kitchen data seperate  ---------------------------------------------------------------------------
@@ -85,7 +88,7 @@ if(TRUE)
   simple_data$max_failed = factor(simple_data$max_failed)
 
   # Linear Model
-  model = lm(formula = fitness ~ temp_change+max_failed+range+min_temp+max_state_fail+k_constant+front_threshold+front_ratio,data=simple_data)
+  model = lm(formula = fitness ~ temp_change+max_failed+range+min_temp+max_state_fail+k_constant+front_threshold+front_ratio+goal_name,data=simple_data)
   cat("\n----------------------------------------\nSummary of Linear Model\n")
   print(summary(model))
   cat("----------------------------------------\n")
