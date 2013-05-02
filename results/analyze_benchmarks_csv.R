@@ -1,5 +1,7 @@
-#setwd("/home/dave/ros/misc/src/pr2_benchmarking/results/r_results")
-setwd("/Users/dave/2013/5753_Comp_Perf_Modeling/Final Project/pr2_benchmarking/results")
+cat(rep("\n",100)) #Clear console
+
+setwd("/home/dave/ros/misc/src/pr2_benchmarking/results/") # Linux Machine
+#setwd("/Users/dave/2013/5753_Comp_Perf_Modeling/Final Project/pr2_benchmarking/results") #MacBook Pro
 
 # Read in fresh data  -------------------------------------------------------------------------------------
 if(TRUE)
@@ -7,6 +9,8 @@ if(TRUE)
   # Reads in experimental data from MoveIt using csv files
   rm(list=ls(all=TRUE))  # clear all vars
   data <- read.csv("benchmark.csv",header=T) 
+  #data <- read.csv("archived_csv/7_factor_all_complete.csv",header=T) 
+  
   
   # Remove unsolved?  -------------------------------------------------------------------------------------
   #data = data[data$solved==1,]
@@ -23,10 +27,12 @@ if(TRUE)
   #plot(data$goal_name,data$total_time)
   #plot(data$total_time)
   
-  # Filter the data ---------------------------------------------------------------------------
+  # Create the fitness function ---------------------------------------------------------------------------
   path_plan_lengths = suppressWarnings(as.numeric(levels(good_data$path_plan_length))[good_data$path_plan_length])
   path_plan_times = suppressWarnings(as.numeric(levels(good_data$path_plan_time))[good_data$path_plan_time])
-  fitness_values =  (path_plan_lengths^2)*path_plan_times/100
+  #fitness_values =  (path_plan_lengths^2)*path_plan_times/100
+  fitness_values = path_plan_times*path_plan_lengths
+  # Set all NA values to the max value
   fitness_values[is.na(fitness_values)] = max(fitness_values,na.rm = TRUE)
   
   simple_data=data.frame(temp_change     = factor(good_data$param_temp_change_factor), 
@@ -42,22 +48,41 @@ if(TRUE)
   
   #hist(simple_data$fitness,breaks=20,main="Fitness Function Analysis")
   summary(simple_data)
+  
+  # Get list of all goal_names
+  goal_names = unique(simple_data$goal_name)
+  
+  cat("\n----------------------------------------\nStandardization of Fitness Function\n")
+  cat(" goal name            \t mean \t std dev \n")
+  for(name in goal_names)
+  {
+    # Get arithmetic? mean and std. dev of this goal type
+    subset_data = simple_data$fitness[grep(name,simple_data$goal_name)]
+    goal_mean = mean( subset_data )
+    goal_sd = sd( subset_data )
+    cat(name," \t ", goal_mean, " \t ", goal_sd, "\n")
+    
+    # standardize (normalize) the data in this goal name
+    simple_data$fitness[simple_data$goal_name == name] = ( simple_data$fitness[simple_data$goal_name == name] - goal_mean ) / goal_sd
+  }
+  
+  # Scale fitness value to be all positives
+  min_fitness = min(simple_data$fitness,na.rm = TRUE)
+  simple_data$fitness[] = simple_data$fitness[] + abs(min_fitness)
 }
+cat("\n")
+print(summary(simple_data$fitness))
 
 # Fitness function among various benchmarks  ---------------------------------------------------------------------------
 if(TRUE)
 {
-  par(mfrow = c(2, 1)) 
-  plot(simple_data$goal_name,simple_data$fitness,log="y",main="Fitness function distribution between different benchmarks",
+  par(mfrow = c(2, 2)) 
+  plot(simple_data$goal_name,simple_data$fitness,log="",main="Fitness function distribution between different benchmarks",
        xlab='Benchmarking Problem',ylab='Fitness Function Value')
-  plot(simple_data$fitness, simple_data$range,main="Fitness vs Factor")
-}
-
-# Analyze kitchen data seperate  ---------------------------------------------------------------------------
-if(FALSE)
-{
-  kitchen = data[ grep("kitchen.", data$goal_name),]
-  summary(kitchen$solved)
+  plot(simple_data$fitness, simple_data$goal_name,main="Fitness vs Goal Problem")
+  hist(simple_data$fitness,breaks=20,main="Fitness Function Analysis")
+  #plot(simple_data$temp_change,simple_data$fitness,main="Fitness vs Temp Change",xlab="Temp Change",ylab="Normalized Fitness Function")
+  plot(simple_data$max_failed,simple_data$fitness,main="Fitness vs Max Failed",xlab="Max Failed",ylab="Normalized Fitness Function")
 }
 
 # Total planning time vs different tests ---------------------------------------------------------------------------
@@ -84,11 +109,12 @@ if(FALSE)
 # Fractional-Factor Design of Experiements ---------------------------------------------------------------------------
 if(TRUE)
 {
-  simple_data$temp_change = factor(simple_data$temp_change)
-  simple_data$max_failed = factor(simple_data$max_failed)
-
   # Linear Model
-  model = lm(formula = fitness ~ temp_change+max_failed+range+min_temp+max_state_fail+k_constant+front_threshold+front_ratio+goal_name,data=simple_data)
+  model = lm(formula = fitness ~ temp_change+max_failed+range+min_temp+max_state_fail+k_constant+front_threshold+front_ratio,data=simple_data)
+  #model = lm(formula = fitness ~ temp_change*max_failed*range*min_temp*max_state_fail*k_constant*front_threshold*front_ratio,data=simple_data)
+  #model = lm(formula = fitness ~ temp_change*max_failed,data=simple_data)
+  #lines(fitted(model),col="blue") 
+  
   cat("\n----------------------------------------\nSummary of Linear Model\n")
   print(summary(model))
   cat("----------------------------------------\n")
@@ -97,14 +123,15 @@ if(TRUE)
   an = anova(model)
   print(an)
   percent_of_variation = an[[2]]/sum(an[[2]])*100
-  
-  cat("\n----------------------------------------\nPercent of Variation:\n")
-  variation_table = data.frame(name = row.names(an), percent_variation=percent_of_variation)
-  print(variation_table)
+  percent_of_variation = format(round(percent_of_variation, 2), nsmall = 2)
   
   # 95% conf interval for max_failed factor
   cat("\n----------------------------------------\nConfidence Intervals:\n")
   print(confint(aov(model)))
+  
+  cat("\n----------------------------------------\nPercent of Variation:\n")
+  variation_table = data.frame(name = row.names(an), percent_variation=percent_of_variation)
+  print(variation_table)
   
   # diagnostic plot
   #plot(aov(model))
@@ -112,23 +139,20 @@ if(TRUE)
 
 
 
-
-
-
-# Testing 3d plot ---------------------------------------------------------------------------------------
+# 3D Plot Relation -----------------------------------------------------------------------------------------
 if(FALSE)
 {
-  library(rgl)
-  data(volcano)
-  z <- 2 * volcano # Exaggerate the relief
-  x <- 10 * (1:nrow(z)) # 10 meter spacing (S to N)
-  y <- 10 * (1:ncol(z)) # 10 meter spacing (E to W)
-  zlim <- range(y)
-  zlen <- zlim[2] - zlim[1] + 1
-  colorlut <- terrain.colors(zlen,alpha=0) # height color lookup table
-  col <- colorlut[ z-zlim[1]+1 ] # assign colors to heights for each point
-  open3d()
-  rgl.surface(x, y, z, color=col, alpha=0.75, back="lines")
+  library(lattice)
+  p = wireframe(fitness ~ temp_change * max_failed, data=simple_data,main="2 Parameter Sweeping - Temp vs Max Change")
+  #p <- wireframe(z ~ x * y, data=data)
+  npanel <- c(4, 2)
+  rotx <- c(-50, -80)
+  rotz <- seq(30, 300, length = npanel[1]+1)
+  update(p[rep(1, prod(npanel))], layout = npanel,
+         panel = function(..., screen) {
+           panel.wireframe(..., screen = list(z = rotz[current.column()],
+                                              x = rotx[current.row()]))
+         })
 }
 
 

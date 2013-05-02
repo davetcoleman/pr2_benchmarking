@@ -1,0 +1,111 @@
+----------------------------------------
+Summary of Linear Model
+
+Call:
+lm(formula = fitness ~ temp_change + max_failed + range + min_temp + 
+    max_state_fail + k_constant + front_threshold + front_ratio + 
+    goal_name, data = simple_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-124.540   -5.678    2.940   11.092  142.464 
+
+Coefficients: (1 not defined because of singularities)
+                                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                            118.5467     3.5946  32.979  < 2e-16 ***
+temp_change20                           -0.9458     0.7798  -1.213   0.2252    
+max_failed1000                           0.1327     0.7798   0.170   0.8648    
+range0.5                               -10.6782     0.7798 -13.694  < 2e-16 ***
+min_temp1e-09                            0.6937     0.7798   0.890   0.3737    
+max_state_fail1000                           NA         NA      NA       NA    
+k_constant0.001                          0.2018     0.7798   0.259   0.7958    
+front_threshold0.2                       1.6930     0.7798   2.171   0.0300 *  
+front_ratio0.1                           1.3969     0.7798   1.791   0.0733 .  
+goal_name industrial.top_bin_left_01   -70.6332     4.2173 -16.748  < 2e-16 ***
+goal_name industrial.top_bin_right_01 -111.8842     3.9761 -28.139  < 2e-16 ***
+goal_name industrial.top_bin_right_02 -113.6554     3.8499 -29.522  < 2e-16 ***
+goal_name kitchen.cabinet1_1            25.4808     4.8697   5.232 1.73e-07 ***
+goal_name kitchen.cabinet1_2            25.4808     4.2173   6.042 1.61e-09 ***
+goal_name kitchen.cabinet1_3            25.4808     3.9761   6.408 1.58e-10 ***
+goal_name kitchen.cabinet1_4            25.4808     3.8499   6.619 3.93e-11 ***
+goal_name narrow_passage.right_01      -97.7873     4.8697 -20.081  < 2e-16 ***
+goal_name narrow_passage.right_02      -86.5267     4.2173 -20.517  < 2e-16 ***
+goal_name tabletop.tabletop_01         -60.5244     4.8697 -12.429  < 2e-16 ***
+goal_name tabletop.tabletop_02        -114.0281     4.2173 -27.038  < 2e-16 ***
+goal_name tabletop.tabletop_03          -8.4102     3.9761  -2.115   0.0345 *  
+goal_name tabletop.tabletop_04        -113.9766     3.8499 -29.605  < 2e-16 ***
+goal_name tabletop.tabletop_05          -8.6308     3.7721  -2.288   0.0222 *  
+goal_name tabletop.tabletop_06        -113.9177     3.7193 -30.629  < 2e-16 ***
+goal_name tabletop.tabletop_07         -19.4142     3.6812  -5.274 1.38e-07 ***
+goal_name tabletop.tabletop_08        -113.8277     3.6523 -31.166  < 2e-16 ***
+goal_name tabletop.tabletop_09           8.4918     3.6297   2.340   0.0193 *  
+goal_name tabletop.tabletop_10        -113.8926     3.6115 -31.536  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 30.8 on 6213 degrees of freedom
+Multiple R-squared: 0.7815,	Adjusted R-squared: 0.7806 
+F-statistic: 854.9 on 26 and 6213 DF,  p-value: < 2.2e-16 
+
+----------------------------------------
+Analysis of Variance Table
+
+Response: fitness
+                  Df   Sum Sq Mean Sq   F value  Pr(>F)    
+temp_change        1     1396    1396    1.4712 0.22520    
+max_failed         1       27      27    0.0290 0.86484    
+range              1   177877  177877  187.5206 < 2e-16 ***
+min_temp           1      751     751    0.7914 0.37370    
+k_constant         1       64      64    0.0670 0.79578    
+front_threshold    1     4471    4471    4.7139 0.02996 *  
+front_ratio        1     3044    3044    3.2091 0.07328 .  
+goal_name         19 20896261 1099803 1159.4319 < 2e-16 ***
+Residuals       6213  5893470     949                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+----------------------------------------
+Percent of Variation:
+             name percent_variation
+1     temp_change      5.173134e-03
+2      max_failed      1.018795e-04
+3           range      6.593548e-01
+4        min_temp      2.782782e-03
+5      k_constant      2.355401e-04
+6 front_threshold      1.657483e-02
+7     front_ratio      1.128365e-02
+8       goal_name      7.745851e+01
+9       Residuals      2.184598e+01
+
+----------------------------------------
+Confidence Intervals:
+                                             2.5 %       97.5 %
+(Intercept)                            111.4999835  125.5933494
+temp_change20                           -2.4744728    0.5828075
+max_failed1000                          -1.3959066    1.6613737
+range0.5                               -12.2068146   -9.1495343
+min_temp1e-09                           -0.8349317    2.2223486
+k_constant0.001                         -1.3268176    1.7304628
+front_threshold0.2                       0.1643795    3.2216598
+front_ratio0.1                          -0.1317498    2.9255305
+goal_name industrial.top_bin_left_01   -78.9005537  -62.3657823
+goal_name industrial.top_bin_right_01 -119.6787504 -104.0896184
+goal_name industrial.top_bin_right_02 -121.2024618 -106.1083497
+goal_name kitchen.cabinet1_1            15.9344469   35.0271564
+goal_name kitchen.cabinet1_2            17.2134159   33.7481873
+goal_name kitchen.cabinet1_3            17.6862356   33.2753676
+goal_name kitchen.cabinet1_4            17.9337455   33.0278577
+goal_name narrow_passage.right_01     -107.3336410  -88.2409316
+goal_name narrow_passage.right_02      -94.7941235  -78.2593520
+goal_name tabletop.tabletop_01         -70.0707134  -50.9780039
+goal_name tabletop.tabletop_02        -122.2954534 -105.7606819
+goal_name tabletop.tabletop_03         -16.2047600   -0.6156279
+goal_name tabletop.tabletop_04        -121.5236899 -106.4295777
+goal_name tabletop.tabletop_05         -16.0253669   -1.2362177
+goal_name tabletop.tabletop_06        -121.2088026 -106.6265048
+goal_name tabletop.tabletop_07         -26.6305533  -12.1978215
+goal_name tabletop.tabletop_08        -120.9875009 -106.6679688
+goal_name tabletop.tabletop_09           1.3763765   15.6072420
+goal_name tabletop.tabletop_10        -120.9724028 -106.8128705
+
+Number of failed planning attempts: 2333 out of 6240  -  37.38782 %
